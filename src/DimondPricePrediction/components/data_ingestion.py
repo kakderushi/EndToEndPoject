@@ -6,6 +6,9 @@ from src.DimondPricePrediction.exception import customexception
 from dataclasses import dataclass
 from  pathlib import Path
  
+ 
+ # create a atrifacts 
+ # Here you save the artifacts file path
 class DataIngestionConfig:
      raw_data_path=os.path.join('attifacts','raw.csv')
      train_data_path=os.path.join('attifacts','train.csv')
@@ -20,8 +23,11 @@ class DataINgestion:
     def initiate_dataIngestion(self):
         logging.info('data ingestion is started')
         try:
+            # here I load the data
             data=pd.read_csv((os.path.join('notebooks/data','gemstone.csv')))
+            # then log the file
             logging.info("i have read data set")
+            # makde directory for artifacts
             os.makedirs(os.path.join(self.ingestion_config.raw_data_path),exists_ok=True)
             data.to_csv(self.ingestion_config.raw_data_path,index=False)
             logging.info(" i have save the raw data in artifacts folder")
